@@ -57,7 +57,7 @@
                 <div class="col-sm-9" id="lists">
         	<h2>提出问题</h2>
         	<hr>
-         	<form role="form" action="{% url 'question_and_answer:newQuestionSubmit' %}" method="post">
+         	<form role="form" action="{% url 'question_and_answer:newQuestion' %}" method="post">
          		{% csrf_token %}<!--django模板中使用post方法的标签-->
          		<div class="form-group">
                     <h4>请输入标题(不超过20字):</h4>

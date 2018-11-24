@@ -1,67 +1,94 @@
-﻿<html>
-	<head>
-		<meta charset="utf-8">
-		<title>注册</title>
-		<link rel="stylesheet" href="css/reset.css" />
-		<link rel="stylesheet" href="css/common.css" />
-	</head>
-	<body>
-		<div class="wrap login_wrap">
-			<div class="content">
-				
-				<div class="logo"></div>
-				
-				<div class="login_box">	
-					
-					<div class="login_form">
-						<div class="login_title">
-							注册
-						</div>
-						<form action="" method="post">
-							
-							<div class="form_text_ipt">
-								<input name="username" type="text" placeholder="用户名">
-							</div>
-							<div class="ececk_warning"><span>用户名不能为空</span></div>
-                                                                                                                <div class="form_text_ipt">
-								<input name="password" type="password" placeholder="手机号、邮箱">
-							</div>
-                                                                                                                <div class="ececk_warning"><span>数据不能为空</span></div>
-							<div class="form_text_ipt">
-								<input name="password" type="password" placeholder="密码">
-							</div>
-							<div class="ececk_warning"><span>数据不能为空</span></div>
-							<div class="form_text_ipt">
-								<input name="repassword" type="password" placeholder="重复密码">
-							</div>
-							<div class="ececk_warning"><span>数据不能为空</span></div>
-							<div class="form_text_ipt">
-								<input name="code" type="text" placeholder="验证码">
-							</div>
-							<div class="ececk_warning"><span>数据不能为空</span></div>
-							
-							<div class="form_btn">
-								<button type="button">注册</button>
-							</div>
-							<div class="form_reg_btn">
-								<span>已有帐号？</span><a href="demo.html">马上登录</a>
-							</div>
-						</form>
-						<div class="other_login">
-							<div class="left other_left">
-								<span>其它登录方式</span>
-							</div>
-							<div class="right other_right">
-								<a href="#">QQ登录</a>
-								<a href="#">微信登录</a>
-								<a href="#">微博登录</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<script type="text/javascript" src="js/jquery.min.js" ></script>
-		<script type="text/javascript" src="js/common.js" ></script>
-	</body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录</title>
+    <style>
+        body{
+            background-color: rgb(235, 239, 242);
+            font-size: 16px;
+        }
+        .register{
+            width: 340px;
+            height: 280px;
+            margin: 50px auto;
+            border:1px solid rgb(203, 219,218);
+        }
+        .register form{
+            width: 340px;
+            background-color: rgb(254,254,254);
+        }
+        .register .forms{
+            width: 300px;
+            margin: 0 auto;
+            padding:10px 0 20px 0;
+        }
+        .register label{
+            display: inline-block;
+            width: 300px;
+            padding-bottom: 8px;
+        }
+        .register input{
+            width: 300px;
+            height: 35px;
+            border:none;
+            outline: none;
+            border:1px solid rgb(203, 219,218);
+            background-color: #fff;
+            font-size: 18px;
+            text-indent: 6px;
+            border-radius: 5px;
+        }
+        .btn{
+            width: 340px;
+            padding: 15px 0;
+            border-top: 1px solid #ccc;
+            background-color:rgb(240,245,248);
+        }
+        .btn div{
+            overflow: hidden;
+            width: 300px;
+            margin: 0 auto;
+        }
+        .btn button{
+            float:right;
+            padding:8px 16px;
+            background: rgb(157, 211, 239);
+            border:1px solid #ccc;
+            border-radius: 5px;
+            color: #fff;
+        }
+        .btn a{
+            float:left;
+            padding: 5px 0;
+            text-decoration: none;
+            color:#ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="register">
+        <form action="" method="post"  enctype="multipart/form-data">
+           <div class="forms">
+               {% csrf_token %}
+               {% for field in form %}
+                    <div class="filedwrapper">
+                        {{ field.errors }}
+                        {{ field.label_tag }} {{ field }}
+
+                    </div>
+               {% endfor %}
+           </div>
+            <div class="btn">
+                <div>
+                    <a href="#">忘记密码?</a>
+                    <a href="{% url 'question_and_answer:login' %}">已有账户?</a>
+                    <button type ='submit'>注册</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
 </html>

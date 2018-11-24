@@ -47,12 +47,12 @@
    <ul class="nav navbar-nav navbar-right">
          <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown">
-               {{ user }} <b class="caret"></b>
+               {{ username }} <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
                <li><a href="#">我的</a></li>
                <li class="divider"></li>
-               <li><a href="#">登出</a></li>
+               <li><a href="{% url 'question_and_answer:logout' %}">登出</a></li>
             </ul>
          </li>
       </ul>
@@ -86,7 +86,7 @@
                 {% for question in question_list %}
                     <tr>
                         <td><a class="text-muted" href="{% url 'question_and_answer:detail' question.id %}">{{ question.question_title }}</a></td>
-                        <td>{{ question.student }}</td>
+                        <td>{{ question.student.user.username }}</td>
                         <td>{{ question.pub_date | date:"F j, Y" }}</td>
                         <td>{{ question.good_num }}</td>
                     </tr>
@@ -94,7 +94,7 @@
             {% else %}
                 <tr><td colspan=4>没有问题了</td></tr>
             {% endif %}
-          
+
            	</tbody>
 
            </table>
