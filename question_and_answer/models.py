@@ -13,17 +13,28 @@ class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return "<Student: %s>" % (self.user.username)
+        return "Student: %s" % (self.user.username)
 
 class Category(models.Model):
     '''
     板块名称
     '''
     name = models.CharField(max_length=40, unique=True, verbose_name='版块名称')
+    number = models.IntegerField(default=0, verbose_name='板块序号')
+    def __str__(self):
+        return "Category: %s" % (self.name)
+
+# 用来保存上传图片相关信息的模型
+class Profile(models.Model):
+    name = models.CharField(max_length = 50)
+    # upload_to 表示图像保存路径
+    picture = models.ImageField(upload_to = 'test_pictures')
+
+    class Meta:
+        db_table = "profile"
 
     def __str__(self):
-        return "<Category: %s>" % (self.name)
-
+        return self.name
 
 
 class Question(models.Model):
@@ -37,9 +48,12 @@ class Question(models.Model):
     question_text = models.TextField('详细描述')
     pub_date = models.DateTimeField(auto_now=True, verbose_name='发布日期')
     priority = models.IntegerField(default=1000, verbose_name='排序优先级')
-
+    good_num = models.IntegerField(default=0)
+    bad_num = models.IntegerField(default=0)
+    grade = models.IntegerField(default=0)
     def __str__(self):
-        return "<%s,author:%s>" % (self.question_title[:20],self.student.user.username)
+        return "Title: %s, Asker:%s" % (self.question_title[:20],self.student.user.username)
+
 class Answer(models.Model):
     '''
     回答类, 与Student和Question相连
@@ -49,27 +63,7 @@ class Answer(models.Model):
     question = models.ForeignKey('Question', on_delete=models.CASCADE)
     answer_text = models.TextField(verbose_name='回答内容')
     pub_date = models.DateTimeField(auto_now=True, verbose_name='回答时间')
-    # parent_answer_text 是关于多级评论的内容, 暂时未实现, 由周纸墨完成
-    parent_answer_text = models.ForeignKey("self", related_name='p_answer_text', blank=True, null=True,
-                                           on_delete=models.CASCADE)
+    head_img = models.ForeignKey('Profile', verbose_name='图片', on_delete=models.CASCADE)
+
     def __str__(self):
-        return "<user: %s>" % (self.student)
-
-
-# 点赞功能及显示暂未完成
-class GoodNum(models.Model):
-    '''
-    点赞
-    '''
-    answer = models.ForeignKey('Answer', on_delete=models.CASCADE)
-    student = models.ForeignKey('Student', on_delete=models.CASCADE)
-    date = models.DateTimeField(auto_now=True)
-
-class BadNum(models.Model):
-    '''
-    踩
-    '''
-    answer = models.ForeignKey('Answer', on_delete=models.CASCADE)
-    student = models.ForeignKey('Student', on_delete=models.CASCADE)
-    date = models.DateTimeField(auto_now=True)
-
+        return "Answerer: %s" % (self.student)

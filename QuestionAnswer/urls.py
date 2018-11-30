@@ -18,7 +18,7 @@ from django.urls import path, include
 from django.views.generic.base import RedirectView
 
 urlpatterns = [
+    path('', RedirectView.as_view(url='qa/')),
     path('admin/', admin.site.urls),
-    path('', RedirectView.as_view(url='qa/1/')),
     path('qa/', include('question_and_answer.urls')),
 ]

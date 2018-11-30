@@ -1,0 +1,119 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%Creator: cairo 1.8.8 (http://cairographics.org)
+%%CreationDate: Wed May 25 19:13:54 2016
+%%Pages: 1
+%%BoundingBox: 0 0 684 665
+%%DocumentData: Clean7Bit
+%%LanguageLevel: 2
+%%EndComments
+%%BeginProlog
+/cairo_eps_state save def
+/dict_count countdictstack def
+/op_count count 1 sub def
+userdict begin
+/q { gsave } bind def
+/Q { grestore } bind def
+/cm { 6 array astore concat } bind def
+/w { setlinewidth } bind def
+/J { setlinecap } bind def
+/j { setlinejoin } bind def
+/M { setmiterlimit } bind def
+/d { setdash } bind def
+/m { moveto } bind def
+/l { lineto } bind def
+/c { curveto } bind def
+/h { closepath } bind def
+/re { exch dup neg 3 1 roll 5 3 roll moveto 0 rlineto
+      0 exch rlineto 0 rlineto closepath } bind def
+/S { stroke } bind def
+/f { fill } bind def
+/f* { eofill } bind def
+/B { fill stroke } bind def
+/B* { eofill stroke } bind def
+/n { newpath } bind def
+/W { clip } bind def
+/W* { eoclip } bind def
+/BT { } bind def
+/ET { } bind def
+/pdfmark where { pop globaldict /?pdfmark /exec load put }
+    { globaldict begin /?pdfmark /pop load def /pdfmark
+    /cleartomark load def end } ifelse
+/BDC { mark 3 1 roll /BDC pdfmark } bind def
+/EMC { mark /EMC pdfmark } bind def
+/cairo_store_point { /cairo_point_y exch def /cairo_point_x exch def } def
+/Tj { show currentpoint cairo_store_point } bind def
+/TJ {
+  {
+    dup
+    type /stringtype eq
+    { show } { -0.001 mul 0 cairo_font_matrix dtransform rmoveto } ifelse
+  } forall
+  currentpoint cairo_store_point
+} bind def
+/cairo_selectfont { cairo_font_matrix aload pop pop pop 0 0 6 array astore
+    cairo_font exch selectfont cairo_point_x cairo_point_y moveto } bind def
+/Tf { pop /cairo_font exch def /cairo_font_matrix where
+      { pop cairo_selectfont } if } bind def
+/Td { matrix translate cairo_font_matrix matrix concatmatrix dup
+      /cairo_font_matrix exch def dup 4 get exch 5 get cairo_store_point
+      /cairo_font where { pop cairo_selectfont } if } bind def
+/Tm { 2 copy 8 2 roll 6 array astore /cairo_font_matrix exch def
+      cairo_store_point /cairo_font where { pop cairo_selectfont } if } bind def
+/g { setgray } bind def
+/rg { setrgbcolor } bind def
+/d1 { setcachedevice } bind def
+%%EndProlog
+%%Page: 1 1
+%%BeginPageSetup
+%%PageBoundingBox: 0 0 684 665
+%%EndPageSetup
+q
+0.152941 0.14902 0.211765 rg
+82.848 301.775 m 43.25 301.775 l 42.098 623.599 l 82.848 623.599 l 
+82.848 623.9 l 93.586 624.349 102.199 633.048 102.199 643.9 c 102.199 
+654.724 93.586 663.451 82.848 663.849 c 82.848 664.002 l 82.262 664.002 
+l 82.188 664.002 82.148 664.025 82.074 664.025 c 81.988 664.025 81.949 
+664.002 81.875 664.002 c 33.051 663.951 l 31.574 664.201 30.062 663.951 
+28.539 663.951 c 12.773 663.951 0 651.451 0 635.498 c 0.273 288.826 l 
+0.273 272.849 13.027 259.947 28.773 259.947 c 29.949 259.947 31.125 
+259.998 32.262 260.173 c 82.262 260.048 l 82.461 260.048 82.637 259.947 
+82.848 259.947 c 94.41 259.947 103.762 269.298 103.762 280.873 c 
+103.762 292.4 94.41 301.775 82.848 301.775 c 82.848 301.775 l h
+684.348 323.236 m 684.602 326.423 684.348 329.724 683.5 332.974 c 
+621.898 608.427 l 621.047 611.724 619.625 614.701 617.801 617.4 c 
+611.199 630.701 601.148 642.502 587.824 651.099 c 573.773 660.15 
+565.047 664.052 549.574 664.002 c 542.598 664.201 l 142.562 664.025 l 
+134 664.025 l 134 480.224 l 134.625 302.451 l 134.625 258.548 l 218.625 
+248.974 289.211 179.252 291.609 92.548 c 291.371 90.002 291.609 87.502 
+291.609 84.9 c 291.609 38.525 322.172 0.002 367.996 0.002 c 407.371 
+0.002 440.246 27.798 448.746 65.048 c 449.148 65.002 l 453.824 86.298 
+456.398 108.377 456.398 131.048 c 456.398 166.048 449 203.252 438.223 
+234.502 c 602.598 235.052 l 604.047 235.052 605.473 235.177 606.898 
+235.377 c 634.047 236.474 656.5 246.65 671.898 271.802 c 681.723 
+287.798 685.598 305.798 684.348 323.236 c h
+645.523 314.048 m 647.898 306.548 647.148 298.099 642.75 290.873 c 
+637.223 281.9 627.547 277.248 617.848 277.748 c 617.848 277.65 l 
+606.098 277.298 l 415.098 277.076 l 399.348 277.076 384.074 275.623 
+384.074 259.673 c 384.074 255.099 385.148 250.775 387.047 246.923 c 
+386.75 246.65 l 398.148 225.197 406.426 201.798 411.125 177.072 c 411.5 
+177.072 l 411.5 177.072 415.25 161.498 415.223 131.599 c 415.199 107.9 
+410.699 85.849 410.699 85.849 c 410.699 70.896 390.75 44.673 370.5 
+43.998 c 355.75 43.998 331.047 55.974 335 86.349 c 335 86.349 335.238 
+109.498 330.801 132.849 c 328.887 142.798 326.238 152.072 323.836 159.4 
+c 323.785 159.373 323.738 159.349 323.688 159.349 c 296.672 234.525 
+244.262 266.048 172.812 298.248 c 172.949 624.197 l 554.547 624.623 l 
+555.824 624.623 557.047 624.447 558.25 624.623 c 561.973 624.123 
+565.648 622.822 569 620.646 c 573.801 617.599 577.25 613.224 579.301 
+608.298 c 579.375 608.349 l 645.75 314.123 l 645.523 314.048 l h
+142.348 664.099 m 142.125 664.048 142.023 664.025 142.562 664.025 c 
+143.086 664.025 142.988 664.048 142.801 664.099 c 142.914 664.127 
+142.812 664.127 142.562 664.099 c 142.324 664.127 142.25 664.127 
+142.348 664.099 c h
+142.348 664.099 m f
+Q
+showpage
+%%Trailer
+count op_count sub {pop} repeat
+countdictstack dict_count sub {end} repeat
+cairo_eps_state restore
+%%EOF

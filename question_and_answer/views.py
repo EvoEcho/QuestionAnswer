@@ -6,42 +6,51 @@ from django.urls import reverse
 from django.utils import timezone
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
+from .forms import RegistrationForm, LoginForm, ProfileForm
 from django.contrib.auth.models import User
 from .forms import RegistrationForm, LoginForm
-from .models import Student, Question, Answer
+from .models import *
 
-def index(request, page=1):
-    # 暂时只有按时间倒序排列, 将有分页器及排序功能
-    question_list = Question.objects.order_by('-pub_date')[(page-1):(page+20)]
-    user_id = request.session.get('user_id')
-    if user_id:
-        user = User.objects.get(id=user_id)
-        username = user.username
-    else:
-        username = '未登录'
-    context = {
-        'username':username,
-        'question_list': question_list,
-    }
-    return render(request, 'question_and_answer/index.html', context)
+def index(request):
+    return render(request, 'question_and_answer/index.html')
+    # # 暂时只有按时间倒序排列, 将有分页器及排序功能
+    # question_list = Question.objects.order_by('-pub_date')[(page-1):(page+20)]
+    # user_id = request.session.get('user_id')
+    # if user_id:
+    #     user = User.objects.get(id=user_id)
+    #     username = user.username
+    # else:
+    #     username = '未登录'
+    # context = {
+    #     'username':username,
+    #     'question_list': question_list,
+    # }
+    # return render(request, 'question_and_answer/index.html', context)
 
-def detail(request, pk):
+def category(request):
+    pass
+    return render(request, 'question_and_answer/category.html', {})
+
+def questions(request, category_id):
+    return render(request, 'question_and_answer/question_financial.html', {})
+
+def detail(request, question_id):
     '''
     查看问题详细内容
     '''
-    question = get_object_or_404(Question, pk=pk)
-    return render(request, 'question_and_answer/detail.html', {'question': question})
+    #question = get_object_or_404(Question, pk=question_id)
+    return render(request, 'question_and_answer/question_detail.html', {'question': question})
 
-def answer(request, pk):
+def answer(request, question_id):
     '''
     回答问题
     '''
-    question = get_object_or_404(Question, pk=pk)
+    question = get_object_or_404(Question, pk=question_id)
     try:
         answer_text = request.POST['answer']
     except KeyError:
 
-        return render(request, 'question_and_answer/detail.html', {
+        return render(request, 'question_and_answer/question_detail.html', {
             'question': question,
             'error_message': "Something wrong!",
         })
@@ -60,11 +69,10 @@ def answer(request, pk):
 '''
 @login_required() 是一个装饰器, 要求必须登录后才能查看, 跳转至登录界面
 '''
-@login_required(login_url='/qa/login/')
-def newQuestion(request):
-    '''
-    用户提问
-    '''
+#@login_required(login_url='/qa/login/')
+def ask(request):
+    return render(request, 'question_and_answer/ask.html')
+'''
     if request.method == 'POST':
         user_id = request.session.get('user_id')
         user = User.objects.get(id=user_id)
@@ -74,22 +82,48 @@ def newQuestion(request):
             return HttpResponseRedirect(reverse('question_and_answer:index'), args={1,})
         try:
             question_title = request.POST['title']
+            question_category_name = request.POST['category']
             question_text = request.POST['question']
+            #new_img_path = handle_uploaded_file(request.FILES['head_img'])
+            #head_img = new_img_path
+            question_category = Category.objects.get(name=question_category_name)
+            # for e in Category.objects.all():
+            #     if e.name == question_category_name:
+            #         question_category = e
+            # 接收 post 方法传回后端的数据
+            MyProfileForm = ProfileForm(request.POST, request.FILES)
+            # 检验表单是否通过校验
+            if MyProfileForm.is_valid():
+                # 构造一个 Profile 实例
+                profile = Profile()
+                # 获取name
+                profile.name = MyProfileForm.cleaned_data["name"]
+                # 获取图片
+                profile.picture = MyProfileForm.cleaned_data["picture"]
+                # 保存
+                profile.save()
+                head_img = profile
+            else:
+                return render(request, 'question_and_answer/ask.html', {
+                    'error_message': "Something wrong!",
+                })
         except KeyError:
             error_message = "Something wrong!"
-            return render(request, 'question_and_answer/newQuestion.html', {
+            return render(request, 'question_and_answer/ask.html', {
                 'error_message': "Something wrong!",
             })
         else:
             question = Question(
                 student=student,
                 question_title=question_title,
+                question_category=question_category,
                 question_text=question_text,
+                head_img=profile
             )
             question.save()
             return HttpResponseRedirect(reverse('question_and_answer:detail', args=(question.id,)))
-    return render(request, 'question_and_answer/newQuestion.html', {})
-
+    return render(request, 'question_and_answer/ask.html', {})
+'''
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -104,10 +138,12 @@ def register(request):
             return HttpResponseRedirect(reverse('question_and_answer:login'))
     else:
         form = RegistrationForm()
-    return render(request, 'question_and_answer/register.html',{'form':form})
+    return render(request, 'question_and_answer/login_register.html',{'form':form})
 
 
 def login(request):
+    return render(request, 'question_and_answer/login_register.html')
+'''
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -121,15 +157,33 @@ def login(request):
                 request.session['is_login'] = True
                 return HttpResponseRedirect(reverse('question_and_answer:index', args={1,}))
             else:
-                return render(request, 'question_and_answer/login.html', {'form':form, 'message': "密码或用户名错误, 请重试"})
+                return render(request, 'question_and_answer/login_register.html', {'form':form, 'message': "密码或用户名错误, 请重试"})
 
     else:
         form = LoginForm()
 
-    return render(request, 'question_and_answer/login.html', {'form': form})
+    return render(request, 'question_and_answer/login_register.html', {'form': form})
+'''
 
 def logout(request):
+    return HttpResponse('Logged out!')
+    '''
     if request.session.get('is_login', None):
         request.session.flush()
     return HttpResponseRedirect(reverse('question_and_answer:login'))
+    '''
+def about(request):
+    return render(request, 'question_and_answer/about.html')
+
+def profile(request):
+    return render(request, 'question_and_answer/profile.html')
+
+def notice(request):
+    return render(request, 'question_and_answer/notice.html')
+
+def myquestions(request):
+    return render(request, 'question_and_answer/myquestions.html')
+
+def modification(request):
+    return render(request, 'question_and_answer/modification.html')
 

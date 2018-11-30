@@ -1,0 +1,196 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+    {% load static %}
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>个人信息</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="" />
+  	<!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400" rel="stylesheet">
+	
+	<!-- Animate.css' %} -->
+	<link rel="stylesheet" href="{% static 'css/animate.css' %}">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+
+	<!-- Owl Carousel  -->
+	<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="{% static 'css/flexslider.css' %}">
+
+	<!-- Pricing -->
+	<link rel="stylesheet" href="{% static 'css/pricing.css' %}">
+
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+	<!-- Modernizr JS -->
+	<script src="{% static 'js/modernizr-2.6.2.min.js'%}"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.mi.js"></script>
+	<![endif]-->
+
+	</head>
+	<body>
+		
+	<div class="fh5co-loader"></div>
+	
+	<div id="page">
+	<nav class="fh5co-nav" role="navigation">
+
+		<div class="top-menu">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-2">
+						<div id="fh5co-logo"><a href="{% url 'question_and_answer:index'%}"><i class="icon-study"></i>Educ<span>.</span></a></div>
+					</div>
+					<div class="col-xs-10 text-right menu-1">
+						<ul>
+							<li class="active"><a href="{% url 'question_and_answer:index'%}">Home</a></li>
+							<li><a href="{% url 'question_and_answer:category'%}">Question</a></li>
+							<li><a href="{% url 'question_and_answer:ask'%}">Ask</a></li>
+							<li class="has-dropdown">
+								<a >User</a>
+								<ul class="dropdown">
+									<li><a href="{% url 'question_and_answer:profile' %}">个人信息</a></li>
+									<li><a href="{% url 'question_and_answer:myquestions' %}">我的问题</a></li>
+									<li><a href="{% url 'question_and_answer:notice' %}">通知与私信</a></li>
+									<li><a href="{% url 'question_and_answer:logout'%}">退出登录</a></li>
+								</ul>
+							</li>
+							<li class="btn-cta"><a href="{% url 'question_and_answer:login'%}"><span>Login</span></a></li>
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</nav>
+
+    <div id="fh5co-testimonial" style="background-image: url({% static 'images/school.jpg' %}');">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row animate-box">
+				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+					<h2><span>个人信息</span></h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+					<div class="row animate-box">
+							<div class="item">
+								<div class="testimony-slide active text-center">
+									<div class="user" style="background-image: url({% static 'images/person1.jpg' %});"></div>
+									<span>杨小猪<br><small>头衔：至尊星耀</small></span>
+									<blockquote>
+										<p>邮箱：hahahahahahaha<br />电话：12345678<br />学校：上海交通大学<br />专业：信息安全<br />总讨论数：22<br />总提问数：5<br />被赞数：48<br />被踩数：6</p>
+									</blockquote>
+									<div class="form-group">
+							        <input type="submit" value="修改个人信息" class="btn btn-primary">
+						            </div>
+								</div>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer id="fh5co-footer" role="contentinfo" style="background-image: url({% static 'images/img_bg_4.jpg' %});">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row row-pb-md">
+				<div class="col-md-3 fh5co-widget">
+					<h3>About Us</h3>
+					<p>我们致力于建设出优秀的问题交流平台，不仅是为了解惑，更是为了提问，达成师生间的双向互动。</p>
+				</div>
+				<div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1 fh5co-widget">
+					<h3>Learning</h3>
+					<ul class="fh5co-footer-links">
+						<li><a href="{% url 'question_and_answer:index'%}">Home</a></li>
+						<li><a href="{% url 'question_and_answer:category'%}">Question</a></li>
+						<li><a href="{% url 'question_and_answer:ask'%}">Ask</a></li>
+						<li><a href="{% url 'question_and_answer:register' %}">Register</a></li>
+					</ul>
+				</div>
+
+				<div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1 fh5co-widget">
+					<h3>Team</h3>
+					<ul class="fh5co-footer-links">
+						<li><a>Zhang Xiheng</a></li>
+						<li><a>Huo Yufei</a></li>
+						<li><a>Le Youming</a></li>
+						<li><a>Wei Shangqing</a></li>
+						<li><a>Yang Lina</a></li>
+						<li><a>Yuan Xin</a></li>
+						<li><a>Zheng Jiaxing</a></li>
+						<li><a>Zhou Zhimo</a></li>
+					</ul>
+				</div>
+
+				<div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1 fh5co-widget">
+					<h3>Thanks For</h3>
+					<ul class="fh5co-footer-links">
+						<li><a>Doctor Ma Yinghua</a></li>
+						<li><a>Teaching Assistants</a></li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+	</footer>
+	</div>
+
+	<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+	</div>
+	
+	<!-- jQuery -->
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+	<!-- jQuery Easing -->
+	<script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+	<!-- Bootstrap -->
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<!-- Waypoints -->
+	<script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+	<!-- Stellar Parallax -->
+	<script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+	<!-- Carousel -->
+	<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+	<!-- Flexslider -->
+	<script src="{% static 'js/jquery.flexslider-min.js' %}"></script>
+	<!-- countTo -->
+	<script src="{% static 'js/jquery.countTo.js' %}"></script>
+	<!-- Magnific Popup -->
+	<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+	<script src="{% static 'js/magnific-popup-options.js' %}"></script>
+	<!-- Count Down -->
+	<!-- Main -->
+	<script src="{% static 'js/main.js' %}"></script>
+	
+	</body>
+</html>
+
