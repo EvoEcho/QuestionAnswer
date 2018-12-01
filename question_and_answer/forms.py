@@ -12,10 +12,10 @@ def email_check(email):
 
 class RegistrationForm(forms.Form):
 
-    username = forms.CharField(label='Username', max_length=50)
-    email = forms.EmailField(label='Email',)
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Password Confirmation', widget=forms.PasswordInput)
+    username = forms.CharField(label='Username', max_length=50,widget=forms.TextInput(attrs={'class':'input'}))
+    email = forms.EmailField(label='Email',widget=forms.TextInput(attrs={'class':'input'}))
+    password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class':'input'}))
+    password2 = forms.CharField(label='Password Confirmation', widget=forms.PasswordInput(attrs={'class':'input'}))
 
     # Use clean methods to define custom validation rules
 
@@ -67,8 +67,8 @@ class RegistrationForm(forms.Form):
 
 class LoginForm(forms.Form):
 
-    username = forms.CharField(label='Username', max_length=50)
-    password = forms.CharField(label='Password', widget=forms.PasswordInput)
+    username = forms.CharField(label='Username', max_length=50, widget=forms.TextInput(attrs={"id":"username","class":"input"}))
+    password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={"id":"password","class":"input"}))
 
     # Use clean methods to define custom validation rules
 

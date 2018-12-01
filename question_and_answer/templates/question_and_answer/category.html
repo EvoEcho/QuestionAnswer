@@ -44,7 +44,7 @@
 	<link rel="stylesheet" href="{% static 'css/pricing.css' %}">
 
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style-question.css' %}">
 
 	<!-- Modernizr JS -->
 	<script src="{% static 'js/modernizr-2.6.2.min.js' %}"></script>
@@ -73,15 +73,20 @@
 							<li class="active"><a href="{% url 'question_and_answer:category'%}">Question</a></li>
 							<li><a href="{% url 'question_and_answer:ask'%}">Ask</a></li>
 							<li><a href="{% url 'question_and_answer:about' %}">About</a></li>
-							<li class="has-dropdown">
-								<a href="#">User</a>
-								<ul class="dropdown">
-									<li><a href="{% url 'question_and_answer:profile' %}">个人信息</a></li>
-									<li><a href="{% url 'question_and_answer:myquestions' %}">我的问题</a></li>
-                                    <li><a href="{% url 'question_and_answer:notice' %}">通知与私信</a></li>									<li><a href="{% url 'question_and_answer:logout'%}">退出登录</a></li>
-								</ul>
-							</li>
-							<li class="btn-cta"><a href="{% url 'question_and_answer:login'%}"><span>Login</span></a></li>
+                             {% if is_logged_in %}
+                                <li class="has-dropdown">
+                                    <a href="{% url 'question_and_answer:profile' %}">{{ username }}</a>
+                                    <ul class="dropdown">
+                                        <li><a href="{% url 'question_and_answer:profile' %}">个人信息</a></li>
+                                        <li><a href="{% url 'question_and_answer:myquestions' %}">我的问题</a></li>
+                                        <li><a href="{% url 'question_and_answer:notice' %}">通知与私信</a></li>
+                                        <li><a href="{% url 'question_and_answer:logout' %}">退出登录</a></li>
+                                    </ul>
+                                </li>
+                            {% else %}
+                                <li><a href="{% url 'question_and_answer:register' %}">Register</a></li>
+                                <li class="btn-cta"><a href="{% url 'question_and_answer:login' %}"><span>Login</span></a></li>
+                            {% endif %}
 						</ul>
 					</div>
 				</div>
@@ -110,61 +115,70 @@
 	</aside>
 
 	<div id="fh5co-course">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-					<h2>课程分区</h2>
-					<p>点击进入你想讨论的学术专区</p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6 animate-box">
-					<div class="course">
-						<a href="#" class="course-img" style="background-image: url({% static 'images/project-2.jpg' %});">
-						</a>
-						<div class="desc">
-							<h3><a>物理专区</a></h3>
-							<p>大学物理、理论力学、流体力学、电磁学、热学、光学、普物实验、原子物理、平衡态统计物理、普物实验、量子力学、固体物理、电动力学、近代实验、数理方法、计算概论......</p>
-							<span><a href="question_physics.html" class="btn btn-primary btn-sm btn-course">点击进入专区</a></span>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 animate-box">
-					<div class="course">
-						<a href="#" class="course-img" style="background-image: url({% static 'images/project-3.jpg' %});">
-						</a>
-						<div class="desc">
-							<h3><a>数学专区</a></h3>
-							<p>数学分析、解析几何、高等代数、常微分方程、概率论与数理统计、实变函数论、复变函数论、微分几何、偏微分方程、数学物理方程、计算方法、抽象代数、泛函分析、拓扑学......</p>
-							<span><a href="question_math.html" class="btn btn-primary btn-sm btn-course">点击进入专区</a></span>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 animate-box">
-					<div class="course">
-						<a href="#" class="course-img" style="background-image: url({% static 'images/project-4.jpg' %});">
-						</a>
-						<div class="desc">
-							<h3><a>语言专区</a></h3>
-							<p>大学英语、四六级英语、英语公众演讲、英语写作、英语听力、英语论文写作、英语历史选讲托福、雅思、法语、德语、俄语、日语、西班牙语......</p>
-							<span><a href="question_language.html" class="btn btn-primary btn-sm btn-course">点击进入专区</a></span>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 animate-box">
-					<div class="course">
-						<a href="#" class="course-img" style="background-image: url({% static 'images/project-1.jpg' %});">
-						</a>
-						<div class="desc">
-							<h3><a>金融专区</a></h3>
-							<p>政治经济学、西方经济学、财政学、国际经济学、货币银行学、国际金融管理、证券投资学、保险学、商业银行业务管理、中央银行业务、投资银行理论与实务......</p>
-							<span><a href="question_financi.html" class="btn btn-primary btn-sm btn-course">点击进入专区</a></span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+        <div class="container">
+            <div class="row animate-box">
+                <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+                    <h2>课程分区</h2>
+                    <p>点击进入你想讨论的学术专区</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 animate-box">
+                    <div class="course">
+                        <a href="{% url 'question_and_answer:questions' category_id=0 %}" class="course-img"
+                           style="background-image: url({% static 'images/project-2.jpg' %});">
+                        </a>
+                        <div class="desc">
+                            <h3><a href="{% url 'question_and_answer:questions' category_id=0 %}">物理专区</a></h3>
+                            <p>大学物理、理论力学、流体力学、电磁学、热学、光学、普物实验、原子物理、平衡态统计物理、普物实验、量子力学、固体物理、电动力学、近代实验、数理方法、计算概论......</p>
+                            <span><a href="{% url 'question_and_answer:questions' category_id=0 %}"
+                                     class="btn btn-primary btn-sm btn-course">点击进入专区</a></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 animate-box">
+                    <div class="course">
+                        <a href="{% url 'question_and_answer:questions' category_id=1 %}" class="course-img"
+                           style="background-image: url({% static 'images/project-3.jpg' %});">
+                        </a>
+                        <div class="desc">
+                            <h3><a href="{% url 'question_and_answer:questions' category_id=1 %}">数学专区</a></h3>
+                            <p>数学分析、解析几何、高等代数、常微分方程、概率论与数理统计、实变函数论、复变函数论、微分几何、偏微分方程、数学物理方程、计算方法、抽象代数、泛函分析、拓扑学......</p>
+                            <span><a href="{% url 'question_and_answer:questions' category_id=1 %}"
+                                     class="btn btn-primary btn-sm btn-course">点击进入专区</a></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 animate-box">
+                    <div class="course">
+                        <a href="{% url 'question_and_answer:questions' category_id=2 %}" class="course-img"
+                           style="background-image: url({% static 'images/project-4.jpg' %});">
+                        </a>
+                        <div class="desc">
+                            <h3><a href="{% url 'question_and_answer:questions' category_id=2 %}">语言专区</a></h3>
+                            <p>大学英语、四六级英语、英语公众演讲、英语写作、英语听力、英语论文写作、英语历史选讲托福、雅思、法语、德语、俄语、日语、西班牙语......</p>
+                            <span><a href="{% url 'question_and_answer:questions' category_id=2 %}"
+                                     class="btn btn-primary btn-sm btn-course">点击进入专区</a></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 animate-box">
+                    <div class="course">
+                        <a href="{% url 'question_and_answer:questions' category_id=3 %}" class="course-img"
+                           style="background-image: url({% static 'images/project-1.jpg' %});">
+                        </a>
+                        <div class="desc">
+                            <h3><a href="{% url 'question_and_answer:questions' category_id=3 %}">金融专区</a></h3>
+                            <p>政治经济学、西方经济学、财政学、国际经济学、货币银行学、国际金融管理、证券投资学、保险学、商业银行业务管理、中央银行业务、投资银行理论与实务......</p>
+                            <span><a href="{% url 'question_and_answer:questions' category_id=3 %}"
+                                     class="btn btn-primary btn-sm btn-course">点击进入专区</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 	<hr>
 
 	<div id="fh5co-blog" style="background-image: url({% static 'images/bg-5.jpg' %});">
@@ -172,35 +186,24 @@
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 					<h2><span>物理专区精选</span></h2>
-					<a href="question_physics.html">点击进入物理专区</a>
+					<a href="{% url 'question_and_answer:questions' category_id=0 %}">点击进入物理专区</a>
 				</div>
 			</div>
-			<div class="row row-padded-mb">
-				<div class="col-md-4 animate-box">
-					<div class="fh5co-event">
-						<div class="date text-center"><span>35<br>赞</span></div>
-						<h3>相对论的一些讨论（示例）</h3>
-						<p>在狭义相对论中有公式...</p>
-						<p><a href="#">Read More</a></p>
-					</div>
-				</div>
-				<div class="col-md-4 animate-box">
-					<div class="fh5co-event">
-						<div class="date text-center"><span>28<br>赞</span></div>
-						<h3><a href="#">英语俚语的应用</a></h3>
-						<p>美式英语里有很多难以望文生义的俚语，比如...</p>
-						<p><a href="#">Read More</a></p>
-					</div>
-				</div>
-				<div class="col-md-4 animate-box">
-					<div class="fh5co-event">
-						<div class="date text-center"><span>16<br>赞</span></div>
-						<h3><a href="#">C++的一个算法代码问题</a></h3>
-						<p>运行后报错Error：...</p>
-						<p><a href="#">Read More</a></p>
-					</div>
-				</div>
-			</div>
+            <div class="row row-padded-mb">
+                {% if question_list1 %}
+                    {% for question in question_list1 %}
+                        <div class="col-md-4 animate-box">
+                            <div class="fh5co-event">
+                                <div class="date text-center"><span>{{ question.good_num }}<br>赞</span></div>
+                                <h3>{{ question.question_title }}</h3>
+                                <p>{{ question.question_text | truncatechars:"30" }}...</p>
+                                <p><a href="{% url 'question_and_answer:detail' id=question.id %}">Read
+                                    More</a></p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
 		</div>
 	</div>
 	<hr>
@@ -210,35 +213,24 @@
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 					<h2>数学专区精选</h2>
-					<a href="question_math.html">点击进入数学专区</a>
+					<a href="{% url 'question_and_answer:questions' category_id=1 %}">点击进入数学专区</a>
 				</div>
 			</div>
-			<div class="row row-padded-mb">
-				<div class="col-md-4 animate-box">
-					<div class="fh5co-event">
-						<div class="date text-center"><span>35<br>赞</span></div>
-						<h3><a href="#">相对论的一些讨论（示例）</a></h3>
-						<p>在狭义相对论中有公式...</p>
-						<p><a href="#">Read More</a></p>
-					</div>
-				</div>
-				<div class="col-md-4 animate-box">
-					<div class="fh5co-event">
-						<div class="date text-center"><span>28<br>赞</span></div>
-						<h3><a href="#">英语俚语的应用</a></h3>
-						<p>美式英语里有很多难以望文生义的俚语，比如...</p>
-						<p><a href="#">Read More</a></p>
-					</div>
-				</div>
-				<div class="col-md-4 animate-box">
-					<div class="fh5co-event">
-						<div class="date text-center"><span>16<br>赞</span></div>
-						<h3><a href="#">C++的一个算法代码问题</a></h3>
-						<p>运行后报错Error：...</p>
-						<p><a href="#">Read More</a></p>
-					</div>
-				</div>
-			</div>
+            <div class="row row-padded-mb">
+                {% if question_list2 %}
+                    {% for question in question_list2 %}
+                        <div class="col-md-4 animate-box">
+                            <div class="fh5co-event">
+                                <div class="date text-center"><span>{{ question.good_num }}<br>赞</span></div>
+                                <h3>{{ question.question_title }}</h3>
+                                <p>{{ question.question_text | truncatechars:"30" }}...</p>
+                                <p><a href="{% url 'question_and_answer:detail' id=question.id %}">Read
+                                    More</a></p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
 		</div>
 	</div>
 
@@ -247,35 +239,24 @@
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 					<h2>语言专区精选</h2>
-					<a href="question_language.html">点击进入语言专区</a>
+					<a href="{% url 'question_and_answer:questions' category_id=2 %}">点击进入语言专区</a>
 				</div>
 			</div>
-			<div class="row row-padded-mb">
-				<div class="col-md-4 animate-box">
-					<div class="fh5co-event">
-						<div class="date text-center"><span>35<br>赞</span></div>
-						<h3><a href="#">相对论的一些讨论（示例）</a></h3>
-						<p>在狭义相对论中有公式...</p>
-						<p><a href="#">Read More</a></p>
-					</div>
-				</div>
-				<div class="col-md-4 animate-box">
-					<div class="fh5co-event">
-						<div class="date text-center"><span>28<br>赞</span></div>
-						<h3><a href="#">英语俚语的应用</a></h3>
-						<p>美式英语里有很多难以望文生义的俚语，比如...</p>
-						<p><a href="#">Read More</a></p>
-					</div>
-				</div>
-				<div class="col-md-4 animate-box">
-					<div class="fh5co-event">
-						<div class="date text-center"><span>16<br>赞</span></div>
-						<h3><a href="#">C++的一个算法代码问题</a></h3>
-						<p>运行后报错Error：...</p>
-						<p><a href="#">Read More</a></p>
-					</div>
-				</div>
-			</div>
+            <div class="row row-padded-mb">
+                {% if question_list3 %}
+                    {% for question in question_list3 %}
+                        <div class="col-md-4 animate-box">
+                            <div class="fh5co-event">
+                                <div class="date text-center"><span>{{ question.good_num }}<br>赞</span></div>
+                                <h3>{{ question.question_title }}</h3>
+                                <p>{{ question.question_text | truncatechars:"30" }}...</p>
+                                <p><a href="{% url 'question_and_answer:detail' id=question.id %}">Read
+                                    More</a></p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
 		</div>
 	</div>
 
@@ -286,35 +267,24 @@
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 					<h2>金融专区精选</h2>
-					<a href="question_financi.html">点击进入金融专区</a>
+					<a href="{% url 'question_and_answer:questions' category_id=3 %}">点击进入金融专区</a>
 				</div>
 			</div>
-			<div class="row row-padded-mb">
-				<div class="col-md-4 animate-box">
-					<div class="fh5co-event">
-						<div class="date text-center"><span>35<br>赞</span></div>
-						<h3><a href="#">相对论的一些讨论（示例）</a></h3>
-						<p>在狭义相对论中有公式...</p>
-						<p><a href="#">Read More</a></p>
-					</div>
-				</div>
-				<div class="col-md-4 animate-box">
-					<div class="fh5co-event">
-						<div class="date text-center"><span>28<br>赞</span></div>
-						<h3><a href="#">英语俚语的应用</a></h3>
-						<p>美式英语里有很多难以望文生义的俚语，比如...</p>
-						<p><a href="#">Read More</a></p>
-					</div>
-				</div>
-				<div class="col-md-4 animate-box">
-					<div class="fh5co-event">
-						<div class="date text-center"><span>16<br>赞</span></div>
-						<h3><a href="#">C++的一个算法代码问题</a></h3>
-						<p>运行后报错Error：...</p>
-						<p><a href="#">Read More</a></p>
-					</div>
-				</div>
-			</div>
+            <div class="row row-padded-mb">
+                {% if question_list4 %}
+                    {% for question in question_list4 %}
+                        <div class="col-md-4 animate-box">
+                            <div class="fh5co-event">
+                                <div class="date text-center"><span>{{ question.good_num }}<br>赞</span></div>
+                                <h3>{{ question.question_title }}</h3>
+                                <p>{{ question.question_text | truncatechars:"30" }}...</p>
+                                <p><a href="{% url 'question_and_answer:detail' id=question.id %}">Read
+                                    More</a></p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
 		</div>
 	</div>
 

@@ -31,7 +31,7 @@
 	<link rel="stylesheet" href="{% static 'css/flexslider.css' %}">
 
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style-question.css' %}">
 
 	<!-- Modernizr JS -->
 	<script src="{% static 'js/modernizr-2.6.2.min.js' %}"></script>
@@ -56,21 +56,25 @@
 					</div>
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
-							<li class="active"><a href="{% url 'question_and_answer:index'%}">Home</a></li>
+							<li><a href="{% url 'question_and_answer:index'%}">Home</a></li>
 							<li><a href="{% url 'question_and_answer:category'%}">Question</a></li>
 							<li><a href="{% url 'question_and_answer:ask'%}">Ask</a></li>
-							<li><a href="about.html">About</a></li>
-							<li class="has-dropdown">
-								<a href="#">User</a>
-								<ul class="dropdown">
-									<li><a href="{% url 'question_and_answer:profile' %}">个人信息</a></li>
-									<li><a href="{% url 'question_and_answer:myquestions' %}">我的问题</a></li>
-									<li><a href="{% url 'question_and_answer:notice' %}">通知与私信</a></li>
-									<li><a href="{% url 'question_and_answer:logout'%}">退出登录</a></li>
-								</ul>
-							</li>
-							<li class="btn-cta"><a href="{% url 'question_and_answer:login'%}"><span>Login</span></a></li>
-						</ul>
+							<li class="active"><a href="#">About</a></li>
+                            {% if is_logged_in %}
+                                <li class="has-dropdown">
+                                    <a href="{% url 'question_and_answer:profile' %}">{{ username }}</a>
+                                    <ul class="dropdown">
+                                        <li><a href="{% url 'question_and_answer:profile' %}">个人信息</a></li>
+                                        <li><a href="{% url 'question_and_answer:myquestions' %}">我的问题</a></li>
+                                        <li><a href="{% url 'question_and_answer:notice' %}">通知与私信</a></li>
+                                        <li><a href="{% url 'question_and_answer:logout' %}">退出登录</a></li>
+                                    </ul>
+                                </li>
+                            {% else %}
+                                <li><a href="{% url 'question_and_answer:register' %}">Register</a></li>
+                                <li class="btn-cta"><a href="{% url 'question_and_answer:login' %}"><span>Login</span></a></li>
+                            {% endif %}
+                        </ul>
 					</div>
 				</div>
 				
@@ -182,8 +186,6 @@
 	<!-- Magnific Popup -->
 	<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
 	<script src="{% static 'js/magnific-popup-options.js' %}"></script>
-	<!-- Count Down -->
-	<script src="{% static 'js/simplyCountdown.js' %}"></script>
 	<!-- Main -->
 	<script src="{% static 'js/main.js' %}"></script>
 

@@ -44,7 +44,7 @@
     <link rel="stylesheet" href="{% static 'css/pricing.css' %}">
 
     <!-- Theme style  -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style-question.css' %}">
 
     <!-- Modernizr JS -->
     <script src="{% static 'js/modernizr-2.6.2.min.js' %}"></script>
@@ -160,7 +160,7 @@
 							<i class="icon-lab2"></i>
 						</span>
                         <div class="desc">
-                            <h3><a href="#">学术空间</a></h3>
+                            <h3>学术空间</h3>
                             <p>最全最专业的学术分区<br/>最多最顶尖的学术问题<br/>最新最激烈的学术思辩</p>
                         </div>
                     </div>
@@ -171,7 +171,7 @@
 							<i class="icon-bubble3"></i>
 						</span>
                         <div class="desc">
-                            <h3><a href="#">轻松交流</a></h3>
+                            <h3>轻松交流</h3>
                             <p>讨论私信及时通知<br/>踩赞情况一键掌握<br/>学科名师在线交流</p>
                         </div>
                     </div>
@@ -182,7 +182,7 @@
 							<i class="icon-study"></i>
 						</span>
                         <div class="desc">
-                            <h3><a href="#">名师云集</a></h3>
+                            <h3>名师云集</h3>
                             <p>疑难问题耐心解答<br/>学习情况及时管控<br/>一对一式在线交流</p>
                         </div>
                     </div>
@@ -193,7 +193,7 @@
 							<i class="icon-world"></i>
 						</span>
                         <div class="desc">
-                            <h3><a href="#">便捷管理</a></h3>
+                            <h3>便捷管理</h3>
                             <p>后台界面轻松操作<br/>学生情况及时掌握<br/>数据分析一键生成</p>
                         </div>
                     </div>
@@ -363,7 +363,7 @@
             <div class="row animate-box">
                 <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
                     <h2>最新问题</h2>
-                    <p>这里有最多人点赞的问题。</p>
+                    <p>这里有最新的问题等你解答</p>
                 </div>
             </div>
             <div class="row row-padded-mb">
@@ -374,7 +374,7 @@
                                 <div class="date text-center"><span>{{ question.good_num }}<br>赞</span></div>
                                 <h3>{{ question.question_title }}</h3>
                                 <p>{{ question.question_text | truncatechars:"30" }}...</p>
-                                <p><a href="{% url 'question_and_answer:detail' question_id=question.id %}">Read
+                                <p><a href="{% url 'question_and_answer:detail' id=question.id %}">Read
                                     More</a></p>
                             </div>
                         </div>
@@ -386,7 +386,7 @@
                 <div class="row animate-box">
                     <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
                         <h2>精选问题</h2>
-                        <p>这里有最多人点赞的问题。</p>
+                        <p>这里有最多人点赞的问题等你浏览</p>
                     </div>
                 </div>
 
@@ -394,7 +394,7 @@
                     {% if question_list2.0 %}
                         <div class="col-lg-4 col-md-4">
                             <div class="fh5co-blog animate-box">
-                                <a href="{% url 'question_and_answer:detail' question_id=question_list2.0.id %}"
+                                <a href="{% url 'question_and_answer:detail' id=question_list2.0.id %}"
                                    class="blog-img-holder"
                                    style="background-image: url({% static 'images/project-1.jpg' %});"></a>
                                 <div class="blog-text">
@@ -410,7 +410,7 @@
                     {% if question_list2.1 %}
                         <div class="col-lg-4 col-md-4">
                             <div class="fh5co-blog animate-box">
-                                <a href="{% url 'question_and_answer:detail' question_id=question_list2.1.id %}"
+                                <a href="{% url 'question_and_answer:detail' id=question_list2.1.id %}"
                                    class="blog-img-holder"
                                    style="background-image: url({% static 'images/project-2.jpg' %});"></a>
                                 <div class="blog-text">
@@ -426,7 +426,7 @@
                     {% if question_list2.2 %}
                         <div class="col-lg-4 col-md-4">
                             <div class="fh5co-blog animate-box">
-                                <a href="{% url 'question_and_answer:detail' question_id=question_list2.2.id %}"
+                                <a href="{% url 'question_and_answer:detail' id=question_list2.2.id %}"
                                    class="blog-img-holder"
                                    style="background-image: url({% static 'images/project-2.jpg' %});"></a>
                                 <div class="blog-text">
