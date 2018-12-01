@@ -12,35 +12,47 @@ from .forms import RegistrationForm, LoginForm
 from .models import *
 
 def index(request):
-    return render(request, 'question_and_answer/index.html')
-    # # 暂时只有按时间倒序排列, 将有分页器及排序功能
-    # question_list = Question.objects.order_by('-pub_date')[(page-1):(page+20)]
-    # user_id = request.session.get('user_id')
-    # if user_id:
-    #     user = User.objects.get(id=user_id)
-    #     username = user.username
-    # else:
-    #     username = '未登录'
-    # context = {
-    #     'username':username,
-    #     'question_list': question_list,
-    # }
-    # return render(request, 'question_and_answer/index.html', context)
+    question_list1 = Question.objects.order_by('-pub_date')[:3]
+    question_list2 = Question.objects.order_by('-grade')[:3]
+    student_num = len(Student.objects.all())
+    question_num = len(Question.objects.all())
+    answer_num = len(Answer.objects.all())
+    user_id = request.session.get('user_id')
+    if user_id:
+        user = User.objects.get(id=user_id)
+        username = user.username
+        is_logged_in = True
+    else:
+        username = '未登录'
+        is_logged_in = False
+    context = {
+        'username':username,
+        'question_list1': question_list1,
+        'question_list2': question_list2,
+        'student_num': student_num,
+        'question_num': question_num,
+        'answer_num': answer_num,
+        'is_logged_in': is_logged_in,
+    }
+    return render(request, 'question_and_answer/index.html', context)
 
-def category(request):
-    pass
+
+def category(request,category_id):
+
     return render(request, 'question_and_answer/category.html', {})
 
 def questions(request, category_id):
+
     return render(request, 'question_and_answer/question_financial.html', {})
 
 def detail(request, question_id):
     '''
     查看问题详细内容
     '''
-    #question = get_object_or_404(Question, pk=question_id)
+    question = get_object_or_404(Question, question_id=question_id)
     return render(request, 'question_and_answer/question_detail.html', {'question': question})
 
+@login_required(login_url='/qa/login/')
 def answer(request, question_id):
     '''
     回答问题
@@ -69,7 +81,7 @@ def answer(request, question_id):
 '''
 @login_required() 是一个装饰器, 要求必须登录后才能查看, 跳转至登录界面
 '''
-#@login_required(login_url='/qa/login/')
+@login_required(login_url='/qa/login/')
 def ask(request):
     return render(request, 'question_and_answer/ask.html')
 '''
@@ -165,25 +177,27 @@ def login(request):
     return render(request, 'question_and_answer/login_register.html', {'form': form})
 '''
 
+@login_required(login_url='qa/login/')
 def logout(request):
-    return HttpResponse('Logged out!')
-    '''
-    if request.session.get('is_login', None):
-        request.session.flush()
-    return HttpResponseRedirect(reverse('question_and_answer:login'))
-    '''
+    auth.logout(request)
+    return HttpResponseRedirect(reverse('question_and_answer:index'))
+
 def about(request):
     return render(request, 'question_and_answer/about.html')
 
+@login_required(login_url='qa/login/')
 def profile(request):
     return render(request, 'question_and_answer/profile.html')
 
+@login_required(login_url='qa/login/')
 def notice(request):
     return render(request, 'question_and_answer/notice.html')
 
+@login_required(login_url='qa/login/')
 def myquestions(request):
     return render(request, 'question_and_answer/myquestions.html')
 
+@login_required(login_url='qa/login/')
 def modification(request):
     return render(request, 'question_and_answer/modification.html')
 

@@ -9,7 +9,6 @@ class Student(models.Model):
     学生类, 存储其用户名和密码
     与User类为一对一关系
     '''
-
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
@@ -20,7 +19,7 @@ class Category(models.Model):
     板块名称
     '''
     name = models.CharField(max_length=40, unique=True, verbose_name='版块名称')
-    number = models.IntegerField(default=0, verbose_name='板块序号')
+    number = models.IntegerField(unique=True, verbose_name='板块序号')
     def __str__(self):
         return "Category: %s" % (self.name)
 
@@ -42,7 +41,7 @@ class Question(models.Model):
     问题类, 由外键与student连接
     有问题内容, 发布日期, 赞数, 踩数属性
     '''
-    student = models.ForeignKey('Student', verbose_name='提问者',on_delete=models.CASCADE)
+    student = models.ForeignKey('Student', verbose_name='提问者', related_name='questions',on_delete=models.CASCADE)
     question_title = models.CharField('问题标题', max_length=255, unique=True,blank=False)
     question_category = models.ForeignKey('Category', verbose_name='板块名称', on_delete=models.CASCADE,default=1)
     question_text = models.TextField('详细描述')
@@ -59,8 +58,8 @@ class Answer(models.Model):
     回答类, 与Student和Question相连
     有回答内容, 发布日期
     '''
-    student = models.ForeignKey('Student', on_delete=models.CASCADE)
-    question = models.ForeignKey('Question', on_delete=models.CASCADE)
+    student = models.ForeignKey('Student', related_name='answers',on_delete=models.CASCADE)
+    question = models.ForeignKey('Question', related_name='answers',on_delete=models.CASCADE)
     answer_text = models.TextField(verbose_name='回答内容')
     pub_date = models.DateTimeField(auto_now=True, verbose_name='回答时间')
     head_img = models.ForeignKey('Profile', verbose_name='图片', on_delete=models.CASCADE)
