@@ -31,7 +31,7 @@
                     <div class="sign-in-htm">
                         {% for field in loginForm %}
                             <div class="group">
-                                {{ field.errors }}
+                                 <label class="label">{{ field.errors }}</label>
                                 <label class="label"> {{ field.label_tag }}</label>{{ field }}
                             </div>
                         {% endfor %}
@@ -42,10 +42,14 @@
                             </div>
                         </div>
                         {{ loginMessage }}
+
                         <div class="hr"></div>
                         <div class="group">
                             <input name="login" type="submit" class="button" value="登录" disabled="disabled">
                         </div>
+						<div class="foot-lnk">
+							<a href="/admin/">管理员登录</a>
+						</div>
                     </div>
                 </form>
                 <form action="{% url 'question_and_answer:register' %}" method="post" enctype="multipart/form-data">
@@ -54,12 +58,11 @@
 
                         {% for field in registrationForm %}
                             <div class="group">
-                                {{ field.errors }}
+                                <label class="label">{{ field.errors }}</label>
                                 <label class="label"> {{ field.label_tag }}</label>{{ field }}
                             </div>
                         {% endfor %}
-
-                        <div class="hr"></div>
+                        {{ registerMessage }}
                         <div class="group">
                             <input type="submit" class="button" value="注册">
                         </div>

@@ -4,16 +4,25 @@
     {% load static %}
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ask</title>
+	<title>question</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<meta name="author" content="" />
-
+  	<!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
 
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400" rel="stylesheet">
-	
+
 	<!-- Animate.css' %} -->
 	<link rel="stylesheet" href="{% static 'css/animate.css' %}">
 	<!-- Icomoon Icon Fonts-->
@@ -31,6 +40,9 @@
 	<!-- Flexslider  -->
 	<link rel="stylesheet" href="{% static 'css/flexslider.css' %}">
 
+	<!-- Pricing -->
+	<link rel="stylesheet" href="{% static 'css/pricing.css' %}">
+
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="{% static 'css/style-question.css' %}">
 
@@ -40,16 +52,7 @@
 	<!--[if lt IE 9]>
 	<script src="{% static 'js/respond.min.js' %}"></script>
 	<![endif]-->
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-    <script type="text/javascript" charset="utf-8" src="{% static 'ueditor/ueditor.config.js' %}"></script>
-    <script type="text/javascript" charset="utf-8" src="{% static 'ueditor/ueditor.all.min.js' %}"> </script>
-    <script type="text/javascript" charset="utf-8" src="{% static 'ueditor/lang/zh-cn/zh-cn.js' %}"></script>
 
-    <style type="text/css">
-        div{
-            width:100%;
-        }
-    </style>
 	</head>
 
 
@@ -73,17 +76,21 @@
 							<li><a href="{% url 'question_and_answer:category'%}">Question</a></li>
 							<li><a href="{% url 'question_and_answer:ask'%}">Ask</a></li>
 							<li><a href="{% url 'question_and_answer:about' %}">About</a></li>
-							<li class="has-dropdown">
-								<a href="#">User</a>
-								<ul class="dropdown">
-									<li><a href="{% url 'question_and_answer:profile' %}">个人信息</a></li>
-									<li><a href="{% url 'question_and_answer:myquestions' %}">我的问题</a></li>
-									<li><a href="{% url 'question_and_answer:notice' %}">通知与私信</a></li>
-									<li><a href="{% url 'question_and_answer:logout'%}">退出登录</a></li>
-								</ul>
-							</li>
-							<li class="btn-cta"><a href="{% url 'question_and_answer:login'%}"><span>Login</span></a></li>
-						</ul>
+							{% if is_logged_in %}
+                                <li class="has-dropdown">
+                                    <a href="{% url 'question_and_answer:profile' %}">{{ username }}</a>
+                                    <ul class="dropdown">
+                                        <li><a href="{% url 'question_and_answer:profile' %}">个人信息</a></li>
+                                        <li><a href="{% url 'question_and_answer:myquestions' %}">我的问题</a></li>
+                                        <li><a href="{% url 'question_and_answer:notice' %}">通知与私信</a></li>
+                                        <li><a href="{% url 'question_and_answer:logout' %}">退出登录</a></li>
+                                    </ul>
+                                </li>
+                            {% else %}
+                                <li><a href="{% url 'question_and_answer:register' %}">Register</a></li>
+                                <li class="btn-cta"><a href="{% url 'question_and_answer:login' %}"><span>Login</span></a></li>
+                            {% endif %}
+							</ul>
 					</div>
 				</div>
 				
